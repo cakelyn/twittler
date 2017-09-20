@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <link href="https://fonts.googleapis.com/css?family=Roboto|Bungee+Shade" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <script src="jquery.js"></script>
     <script src="data_generator.js"></script>
@@ -22,9 +23,9 @@
             var $tweet = $('<div class="tweet ' + tweet.user + '"></div>');
             var $dateTime = $('<div class="dateTime"></div>');
             $tweet.html('<span class="tweetUser">@' + tweet.user + '</span>: ' + tweet.message);
-            $tweet.appendTo($tweetBody);
+            $tweet.prependTo($tweetBody);
             $dateTime.text('posted at ' + t + ' on ' + d);
-            $dateTime.appendTo($tweetBody);
+            $dateTime.appendTo($tweet);
             index -= 1;
           }
         };
@@ -32,12 +33,24 @@
         var showOnly = function(id) {
           $('.tweet').hide();
           $('.' + id).show();
+          $('#allTweets').show();
+          $('#newTweets').hide();
         };
 
+
+        $('#allTweets').hide();
         loadTweets();
+
+
 
         $('#newTweets').click(function() {
           loadTweets();
+        });
+
+        $('#allTweets').click(function() {
+          $('.tweet').show();
+          $(this).hide();
+          $('#newTweets').show();
         });
 
         $('.tweetUser').click(function() {
@@ -51,9 +64,14 @@
 
     </script>
 
-    <div id="tweets"></div>
+    <h1>Welcome to Twittler!</h1>
 
-    <button id="newTweets">Click for new tweets</button>
+    <div id="buttons" class="buttons">
+      <button id="allTweets">Show all tweets</button>
+      <button id="newTweets">Show new tweets</button>
+    </div>
+
+    <div id="tweets" class="all_tweets"></div>
 
   </body>
 </html>
