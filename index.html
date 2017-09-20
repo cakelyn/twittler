@@ -12,22 +12,24 @@
       $(document).ready(function(){
         var $tweetBody = $('#tweets');
         $tweetBody.html('');
+        var tweetTracker = 0;
 
         var loadTweets = function() {
-          var index = streams.home.length - 1;
-          while(index >= 0){
-            var dt = new Date ();
+          var index = 0;
+          while(index <= streams.home.length - 1){
+            var tweet = streams.home[index];
+            var dt = streams.home[index].created_at;
             var t = dt.toLocaleTimeString();
             var d = dt.toLocaleDateString();
-            var tweet = streams.home[index];
             var $tweet = $('<div class="tweet ' + tweet.user + '"></div>');
             var $dateTime = $('<div class="dateTime"></div>');
             $tweet.html('<span class="tweetUser">@' + tweet.user + '</span>: ' + tweet.message);
             $tweet.prependTo($tweetBody);
             $dateTime.text('posted at ' + t + ' on ' + d);
             $dateTime.appendTo($tweet);
-            index -= 1;
+            index += 1;
           }
+          tweetTracker = streams.home.length;
         };
 
         var showOnly = function(id) {
@@ -57,8 +59,6 @@
           var selectedUser = $(this).text().slice(1);
           showOnly(selectedUser);
         });
-
-        // show button to go back to view all tweets
 
       });
 
