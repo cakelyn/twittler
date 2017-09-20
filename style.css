@@ -1,4 +1,13 @@
-div {
+.tweet {
   font-size: 20px;
-  padding: 0 0 10px 0;
+}
+
+.dateTime {
+  font-size: 12px;
+  padding-bottom: 10px;
+}
+
+.tweetUser {
+  color: blue;
+  cursor: pointer;
 }
