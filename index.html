@@ -55,7 +55,7 @@
           $('#newTweets').show();
         });
 
-        $('.tweetUser').click(function() {
+        $('#tweets').on('click', '.tweetUser', function() {
           var selectedUser = $(this).text().slice(1);
           showOnly(selectedUser);
         });
